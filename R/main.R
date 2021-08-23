@@ -9,18 +9,36 @@ library("reshape2")
 library("tidyquant")
 
 
-# get weights
-get_weights_FD <- function(d=0.25, window=400){
+# get a series of weights for fractional difference within a fixed window
+# by default window size is defined by a cutoff for the smallest weight
+# alternatively the window size may be explicitly defined
+get_weights_FD <- function(d=0.25, threshold=1e-4, window){
+
+    # intial values for weight series
     w <- c(1.0)
-    w_ <- 1.0
+    w_i <- 1.0
     k <- 1
-    while( k < window ){
-        w_ <- -tail(w,1)/k*(d-k+1)
-        w <- c(w,w_)
-        k <- k+1
+
+     # if window is explicitly defined ...
+    if (window) {
+        while( k < window ){
+            w_i <- -tail(w,1)/k*(d-k+1)
+            w <- c(w,w_i)
+            k <- k+1
+        }
+
+    # otherwise, window size is defined by the threshold
+    } else {
+        while(  abs(w_i) > threshold ){
+            w_i <- -tail(w,1)/k*(d-k+1)
+            w <- c(w,w_i)
+            k <- k+1
+        }
     }
+
     return(w)
 }
+
 
 # apply FD to a series (x)
 transform_FD <- function(x, d=0.25, window=400){

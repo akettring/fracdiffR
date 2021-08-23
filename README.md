@@ -69,20 +69,9 @@ df <- cbind.xts(
     transform_FD(x, d=0.1, trans_by_roc=FALSE ),    # frac diff without ROC
     transform_FD(x, d=0.1)                          # frac diff with ROC transform
 )
-plot.xts(df)                          # make a plot of the two series
+plot.xts(df)
 ```
-
-
-This `demo_FD() %>% tail()` returns a transformed series that looks like this:
-```
-                x transform_FD.x.
-2016-12-22 117.40      -1.7374399
-2016-12-23 117.27      -1.1111172
-2016-12-27 118.01      -0.2562332
-2016-12-28 116.92      -1.3466745
-2016-12-29 116.35      -1.3540706
-2016-12-30 115.05      -2.0624452
-```
+The resulting plot of the transformed series is shown at the beginning of this document.
 
 Copyright (C) 2021 Andrew Kettring
 

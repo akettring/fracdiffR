@@ -85,5 +85,6 @@ demo_FD <- function(){
     x <- FANG %>% subset(symbol == "FB")
     x <- xts(x$close, order.by=x$date)
     x <- cbind.xts(x, transform_FD(x))
+    plot.xts(df)
     return(x)
 }

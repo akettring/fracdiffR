@@ -4,11 +4,11 @@ Fractional differnecing of xts timeseries with fixed width window.
 The algorithm is described by Lopez de Prado, and also Ke Gui here (for python):
 https://medium.com/swlh/fractionally-differentiated-features-9c1947ed2b55
 
-This implementation features a small novel innovation... by default, 
+This implementation features a novel innovation... by default, 
 the series is transformed by rolling cusum of ROC "on the fly". 
 This forces stationarity of the series and makes multiple series comparable.
 
-Another minor addition is the ability to explicitly define the window size.
+Another addition is the ability to explicitly define the window size.
 By default the window size is defined by a lower threshold for weight.
 
 

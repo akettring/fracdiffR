@@ -3,7 +3,7 @@
 # ... as described by Lopez de Prado, and here (for python) ...
 # https://medium.com/swlh/fractionally-differentiated-features-9c1947ed2b55
 
-# a unique addition, first described and implemented here
+# a unique addition, first described and implemented here ...
 # by default, series is transformed by rolling cusum of ROC "on the fly"
 
 library("tidyverse")

@@ -1,8 +1,10 @@
 
 # fractional differnecing of xts timeseries with fixed width window
-# ... as described by Prado, and here (for python) ...
+# ... as described by Lopez de Prado, and here (for python) ...
 # https://medium.com/swlh/fractionally-differentiated-features-9c1947ed2b55
-# ... by default, series is transformed by ROC "on the fly"
+
+# a unique addition, first described and implemented here
+# by default, series is transformed by ROC "on the fly" during FD
 
 library("tidyverse")
 library("reshape2")

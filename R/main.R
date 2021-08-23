@@ -84,7 +84,11 @@ transform_FD <- function(x, trans_by_roc=TRUE, d=0.5, threshold=1e-4, window){
 demo_FD <- function(){
     x <- FANG %>% subset(symbol == "FB")
     x <- xts(x$close, order.by=x$date)
-    x <- cbind.xts(x, transform_FD(x))
+    df <- cbind.xts(
+        x,                                              # original series
+        transform_FD(x, d=0.1, trans_by_roc=FALSE ),    # frac diff without ROC
+        transform_FD(x, d=0.1)                          # frac diff with ROC transform
+    )
     plot.xts(df)
-    return(x)
+    return(df)
 }

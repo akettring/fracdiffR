@@ -1,7 +1,7 @@
 
 # fracdiffR
 
-<img src="https://imgur.com/lVTy82f.jpg">
+<img src="https://i.imgur.com/GGrP4Bc.png">
 
 Fractional differnecing of xts timeseries with fixed width window.
 The algorithm is described by Lopez de Prado, and also Ke Gui here (for python):
@@ -62,10 +62,14 @@ get_weights_FD() %>% head()
 
 The function `demo_FD()` implements the following example workflow:
 ```R
-x <- FANG %>% subset(symbol == "FB")    # get series of FB prices
-x <- xts(x$close, order.by=x$date)      # make and xts object of the close prices
-x <- cbind.xts(x, transform_FD(x))      # tranform and bind with original series
-plot.xts(x)                             # make a plot of the two series
+x <- FANG %>% subset(symbol == "FB")
+x <- xts(x$close, order.by=x$date)
+df <- cbind.xts(
+    x,                                              # original series
+    transform_FD(x, d=0.1, trans_by_roc=FALSE ),    # frac diff without ROC
+    transform_FD(x, d=0.1)                          # frac diff with ROC transform
+)
+plot.xts(df)                          # make a plot of the two series
 ```
 
 

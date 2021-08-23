@@ -4,7 +4,7 @@
 # https://medium.com/swlh/fractionally-differentiated-features-9c1947ed2b55
 
 # a unique addition, first described and implemented here
-# by default, series is transformed by ROC "on the fly" during FD
+# by default, series is transformed by rolling cusum of ROC "on the fly"
 
 library("tidyverse")
 library("reshape2")
@@ -43,20 +43,22 @@ get_weights_FD <- function(d=0.5, threshold=1e-4, window){
 
 
 # fractionally differentiate an xts timseries
+# 1. get the weight series and check length
+# 2. transform the timeseries using the weights
 transform_FD <- function(x, trans_by_roc=TRUE, d=0.5, threshold=1e-4, window){
 
-    # get the weights for transformation
+    # 1. get the weights for transformation
     w <- get_weights_FD(d, threshold=threshold, window=window)
-
     # widow size can't be larger than the size of data
     if (length(w) > length(x)){
         print("Series is too short to differnetiate with given parameters!")
         break
     }
 
-    # transform the timeseries using the weights
+    # 2. slide the weight window and transform the data
     df <- xts(order.by = index(x))
     for (i in seq(length(w),length(x))){
+
         # get the timeseries indexes
         i_0_index <- index(x)[i-length(w)+1]    # first time point
         i_1_index <- index(x)[i]                # last time point

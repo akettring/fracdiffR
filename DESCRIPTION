@@ -6,8 +6,8 @@ Date: 2021-08-22
 Author: Andrew Kettring
 Maintainer: Andrew Kettring <akettring@gmail.com>
 Description: Fractional differntiation of xts timeseries using fixed width window
-as described by Lopez de Prado and others with a unique addition. First described
-and implemented here the series is transformed by rolling cusum of ROC "on the fly".
+    as described by Lopez de Prado and others with a unique addition. First described
+    and implemented here the series is transformed by rolling cusum of ROC "on the fly".
 License: GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 Depends:
     R (>= 2.10)
